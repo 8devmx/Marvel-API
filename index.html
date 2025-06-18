@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/md5.js"></script>
+  <script>
+    const timestamp = Date.now()
+    const publicKey = ''
+    const privateKey = ''
+    const hash = CryptoJS.MD5(timestamp + privateKey + publicKey).toString()
+    const url = `https://gateway.marvel.com/v1/public/characters?ts=${timestamp}&apikey=${publicKey}&hash=${hash}`
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+        const characters = data.data.results
+      })
+      .catch(error => console.error('Error fetching data:', error))
+  </script>
+</body>
+
+</html>
